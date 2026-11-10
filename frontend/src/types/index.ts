@@ -124,28 +124,6 @@ export interface ServiceOrderDetail {
   completedAt?: string;
   items: OrderItem[];
   history: OrderHistory[];
-  images?: OrderImage[];
-}
-
-export type OrderImageType = 'Ingreso' | 'Diagnostico' | 'Reparacion' | 'Entrega';
-
-export interface OrderImage {
-  id: number;
-  serviceOrderId: number;
-  type: OrderImageType;
-  title: string;
-  description?: string;
-  imageUrl: string;
-  uploadedByUserId: number;
-  uploadedByUserName: string;
-  createdAt: string;
-}
-
-export interface UploadOrderImageRequest {
-  type: OrderImageType;
-  title: string;
-  description?: string;
-  imageUrl: string;
 }
 
 export interface CreateServiceOrderRequest {

@@ -23,9 +23,6 @@ public interface IOrderService
     Task<ServiceOrderDetailDto> CreateOrderAsync(CreateServiceOrderDto dto, int currentUserId);
     Task<ServiceOrderDetailDto> UpdateOrderStatusAsync(int orderId, UpdateOrderStatusDto dto, int currentUserId);
     Task<ServiceOrderDetailDto> AddOrderItemAsync(int orderId, AddOrderItemDto dto, int currentUserId);
-    Task<List<OrderImageDto>> GetOrderImagesAsync(int orderId);
-    Task<OrderImageDto> AddOrderImageAsync(int orderId, UploadOrderImageDto dto, int currentUserId);
-    Task DeleteOrderImageAsync(int orderId, int imageId, int currentUserId);
 }
 
 public interface IInventoryService

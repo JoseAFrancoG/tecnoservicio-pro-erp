@@ -102,36 +102,6 @@ public class ServiceOrderDetailDto
     public DateTime? CompletedAt { get; set; }
     public List<OrderItemDto> Items { get; set; } = new();
     public List<OrderHistoryDto> History { get; set; } = new();
-    public List<OrderImageDto> Images { get; set; } = new();
-}
-
-public class OrderImageDto
-{
-    public int Id { get; set; }
-    public int ServiceOrderId { get; set; }
-    public string Type { get; set; } = string.Empty; // Ingreso, Diagnostico, Reparacion, Entrega
-    public string Title { get; set; } = string.Empty;
-    public string? Description { get; set; }
-    public string ImageUrl { get; set; } = string.Empty;
-    public int UploadedByUserId { get; set; }
-    public string UploadedByUserName { get; set; } = string.Empty;
-    public DateTime CreatedAt { get; set; }
-}
-
-public class UploadOrderImageDto
-{
-    [Required]
-    [MaxLength(50)]
-    public string Type { get; set; } = "Ingreso"; // Ingreso, Diagnostico, Reparacion, Entrega
-
-    [Required]
-    [MaxLength(150)]
-    public string Title { get; set; } = string.Empty;
-
-    public string? Description { get; set; }
-
-    [Required]
-    public string ImageUrl { get; set; } = string.Empty; // Base64 data URI o URL
 }
 
 public class OrderItemDto

@@ -60,8 +60,6 @@ public class OrderRepository : IOrderRepository
                 .ThenInclude(oi => oi.InventarioItem)
             .Include(o => o.HistorialOrden.OrderByDescending(h => h.FechaModificacion))
                 .ThenInclude(h => h.UsuarioModifico)
-            .Include(o => o.EvidenciasFotograficas.OrderByDescending(img => img.FechaCreacion))
-                .ThenInclude(img => img.SubidoPorUsuario)
             .FirstOrDefaultAsync(o => o.Id == id);
     }
 
@@ -103,33 +101,6 @@ public class OrderRepository : IOrderRepository
     public async Task AddOrderHistoryAsync(OrderHistory history)
     {
         await _context.OrderHistories.AddAsync(history);
-    }
-
-    public async Task<List<OrderImage>> GetOrderImagesAsync(int orderId)
-    {
-        return await _context.EvidenciasFotograficas
-            .AsNoTracking()
-            .Include(img => img.SubidoPorUsuario)
-            .Where(img => img.OrdenServicioId == orderId)
-            .OrderByDescending(img => img.FechaCreacion)
-            .ToListAsync();
-    }
-
-    public async Task<OrderImage?> GetOrderImageByIdAsync(int imageId)
-    {
-        return await _context.EvidenciasFotograficas
-            .Include(img => img.SubidoPorUsuario)
-            .FirstOrDefaultAsync(img => img.Id == imageId);
-    }
-
-    public async Task AddOrderImageAsync(OrderImage image)
-    {
-        await _context.EvidenciasFotograficas.AddAsync(image);
-    }
-
-    public void DeleteOrderImage(OrderImage image)
-    {
-        _context.EvidenciasFotograficas.Remove(image);
     }
 
     public void UpdateOrder(ServiceOrder order)

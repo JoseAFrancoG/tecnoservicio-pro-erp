@@ -93,47 +93,4 @@ public class OrdersController : BaseApiController
         var order = await _orderService.AddOrderItemAsync(id, dto, currentUserId);
         return Ok(order);
     }
-
-    /// <summary>
-    /// Obtiene las evidencias fotográficas asociadas a una orden de servicio.
-    /// </summary>
-    [HttpGet("{id:int}/images")]
-    [ProducesResponseType(typeof(List<OrderImageDto>), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetOrderImages(int id)
-    {
-        var images = await _orderService.GetOrderImagesAsync(id);
-        return Ok(images);
-    }
-
-    /// <summary>
-    /// Registra una nueva evidencia fotográfica (Ingreso, Diagnóstico, Reparación, Entrega) para una orden.
-    /// </summary>
-    [HttpPost("{id:int}/images")]
-    [ProducesResponseType(typeof(OrderImageDto), StatusCodes.Status201Created)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> AddOrderImage(int id, [FromBody] UploadOrderImageDto dto)
-    {
-        if (!ModelState.IsValid)
-        {
-            return BadRequest(ModelState);
-        }
-
-        var currentUserId = GetCurrentUserId();
-        var createdImage = await _orderService.AddOrderImageAsync(id, dto, currentUserId);
-        return StatusCode(StatusCodes.Status201Created, createdImage);
-    }
-
-    /// <summary>
-    /// Elimina una evidencia fotográfica de una orden de servicio.
-    /// </summary>
-    [HttpDelete("{id:int}/images/{imageId:int}")]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> DeleteOrderImage(int id, int imageId)
-    {
-        var currentUserId = GetCurrentUserId();
-        await _orderService.DeleteOrderImageAsync(id, imageId, currentUserId);
-        return NoContent();
-    }
 }

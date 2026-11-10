@@ -15,7 +15,6 @@ public class TechServiceDbContext : DbContext
     public DbSet<ServiceOrder> ServiceOrders => Set<ServiceOrder>();
     public DbSet<OrderItem> OrderItems => Set<OrderItem>();
     public DbSet<OrderHistory> OrderHistories => Set<OrderHistory>();
-    public DbSet<OrderImage> EvidenciasFotograficas => Set<OrderImage>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -140,30 +139,6 @@ public class TechServiceDbContext : DbContext
             entity.HasOne(e => e.UsuarioModifico)
                   .WithMany(u => u.HistorialModificaciones)
                   .HasForeignKey(e => e.UsuarioModificoId)
-                  .OnDelete(DeleteBehavior.Restrict);
-        });
-
-        // 7. Configuración de Evidencias Fotográficas (Mapeo a dbo.EvidenciasFotograficas)
-        modelBuilder.Entity<OrderImage>(entity =>
-        {
-            entity.ToTable("EvidenciasFotograficas");
-            entity.HasKey(e => e.Id);
-            entity.Property(e => e.OrdenServicioId).HasColumnName("OrdenServicioId").IsRequired();
-            entity.Property(e => e.Tipo).HasColumnName("Tipo").HasMaxLength(50).IsRequired();
-            entity.Property(e => e.Titulo).HasColumnName("Titulo").HasMaxLength(150).IsRequired();
-            entity.Property(e => e.Descripcion).HasColumnName("Descripcion");
-            entity.Property(e => e.UrlImagen).HasColumnName("UrlImagen").IsRequired();
-            entity.Property(e => e.SubidoPorUsuarioId).HasColumnName("SubidoPorUsuarioId").IsRequired();
-            entity.Property(e => e.FechaCreacion).HasColumnName("FechaCreacion").HasDefaultValueSql("SYSUTCDATETIME()");
-
-            entity.HasOne(e => e.OrdenServicio)
-                  .WithMany(o => o.EvidenciasFotograficas)
-                  .HasForeignKey(e => e.OrdenServicioId)
-                  .OnDelete(DeleteBehavior.Cascade);
-
-            entity.HasOne(e => e.SubidoPorUsuario)
-                  .WithMany()
-                  .HasForeignKey(e => e.SubidoPorUsuarioId)
                   .OnDelete(DeleteBehavior.Restrict);
         });
     }

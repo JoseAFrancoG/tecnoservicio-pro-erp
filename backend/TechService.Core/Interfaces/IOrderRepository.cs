@@ -11,9 +11,5 @@ public interface IOrderRepository
     Task AddOrderAsync(ServiceOrder order);
     Task AddOrderItemAsync(OrderItem item);
     Task AddOrderHistoryAsync(OrderHistory history);
-    Task<List<OrderImage>> GetOrderImagesAsync(int orderId);
-    Task<OrderImage?> GetOrderImageByIdAsync(int imageId);
-    Task AddOrderImageAsync(OrderImage image);
-    void DeleteOrderImage(OrderImage image);
     void UpdateOrder(ServiceOrder order);
 }

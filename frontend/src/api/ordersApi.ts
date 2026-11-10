@@ -5,8 +5,6 @@ import {
   CreateServiceOrderRequest,
   UpdateOrderStatusRequest,
   AddOrderItemRequest,
-  OrderImage,
-  UploadOrderImageRequest,
 } from '../types';
 
 export const ordersApi = {
@@ -37,19 +35,5 @@ export const ordersApi = {
   addItem: async (id: number, data: AddOrderItemRequest): Promise<ServiceOrderDetail> => {
     const response = await apiClient.post<ServiceOrderDetail>(`/orders/${id}/items`, data);
     return response.data;
-  },
-
-  getImages: async (orderId: number): Promise<OrderImage[]> => {
-    const response = await apiClient.get<OrderImage[]>(`/orders/${orderId}/images`);
-    return response.data;
-  },
-
-  uploadImage: async (orderId: number, data: UploadOrderImageRequest): Promise<OrderImage> => {
-    const response = await apiClient.post<OrderImage>(`/orders/${orderId}/images`, data);
-    return response.data;
-  },
-
-  deleteImage: async (orderId: number, imageId: number): Promise<void> => {
-    await apiClient.delete(`/orders/${orderId}/images/${imageId}`);
   },
 };

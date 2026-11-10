@@ -38,7 +38,6 @@ import {
 import { useAuth } from '../../context/AuthContext';
 import { generateOrderPdf } from '../../utils/generateOrderPdf';
 import { BarcodeScannerModal } from '../../components/barcode/BarcodeScannerModal';
-import { OrderPhotoGallery } from '../../components/orders/OrderPhotoGallery';
 
 const STATUS_LIST: (OrderStatus | 'Todos')[] = [
   'Todos',
@@ -478,17 +477,6 @@ export const ServiceOrdersView: React.FC = () => {
                   Técnico Asignado: <span className="font-semibold text-slate-700">{selectedOrder.technicianName || 'Sin Asignar'}</span>
                 </div>
               </div>
-            </div>
-
-            {/* SECCIÓN EVIDENCIAS FOTOGRÁFICAS */}
-            <div className="p-4 rounded-xl border border-slate-800 bg-slate-900 text-white shadow-xs">
-              <OrderPhotoGallery
-                orderId={selectedOrder.id}
-                orderNumber={selectedOrder.orderNumber}
-                images={selectedOrder.images || []}
-                onImagesUpdated={() => openOrderDetail(selectedOrder.id)}
-                canEdit={true}
-              />
             </div>
 
             {/* SECCIÓN ACTUALIZACIÓN DE ESTADO Y DIAGNÓSTICO */}

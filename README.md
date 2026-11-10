@@ -26,8 +26,7 @@ techservice-pro-erp/
     ├── src/
     │   ├── api/                       # Cliente Axios con interceptor Bearer JWT
     │   ├── components/                # UI Enterprise: Sidebar, Navbar, StatusBadge, Modal, KPICards
-    │   │   ├── barcode/               # Generador e impresión Code 128 + Escáner por cámara/láser
-    │   │   └── orders/                # Galería de evidencias fotográficas con Lightbox y cámara
+    │   │   └── barcode/               # Generador e impresión Code 128 + Escáner por cámara/láser
     │   ├── context/                   # AuthContext con gestión de sesión y roles
     │   ├── features/                  # auth/, dashboard/, orders/, inventory/
     │   ├── types/                     # Interfaces TypeScript alineadas a los DTOs de C#
@@ -49,18 +48,12 @@ techservice-pro-erp/
    - Diagnóstico técnico, costos de mano de obra y liquidación en Pesos Colombianos (COP).
    - Generación y descarga directa de órdenes en formato **PDF listo para imprimir** con términos de garantía y firmas.
 
-2. **Registro de Evidencias Fotográficas:**
-   - Soporte para adjuntar fotografías del estado físico del equipo por etapas: *Ingreso / Recepción*, *Diagnóstico Técnico*, *Reparación / Cambio* y *Entrega / Final*.
-   - Captura directa con la cámara del dispositivo móvil o carga de imágenes desde el disco.
-   - Compresión automática en el navegador (Canvas) y almacenamiento portable en Base64 en base de datos.
-   - Visor Lightbox a pantalla completa con descarga individual e integración en el reporte PDF.
-
-3. **Control de Inventario y Código de Barras (Code 128):**
+2. **Control de Inventario y Código de Barras (Code 128):**
    - Generación automática de códigos SKU únicos por categoría (`REP-DIS-XXXX`, `REP-BAT-XXXX`, etc.).
    - Generador visual de etiquetas de código de barras Code 128 en formato vectorial SVG para impresión.
    - Lector y escáner de códigos de barras mediante la cámara web/móvil o lectores físicos láser USB con confirmación sonora (audio beep).
 
-4. **Trazabilidad y Transacciones ACID:**
+3. **Trazabilidad y Transacciones ACID:**
    - Deducción atómica de repuestos de almacén con validación de stock y rollback ante inconsistencias.
    - Historial y auditoría automática de cada cambio de estado, fecha y usuario responsable.
 
@@ -103,6 +96,6 @@ npm run dev
 | Rol | Correo Electrónico | Contraseña | Capacidades |
 |---|---|---|---|
 | **Administrador** | `admin@techservice.com` | `Admin123!` | Control global, métricas financieras, creación de órdenes y catálogo |
-| **Técnico Hardware** | `tecnico@techservice.com` | `Tech123!` | Diagnóstico técnico, cambio de estados, asignación de repuestos y fotos |
+| **Técnico Hardware** | `tecnico@techservice.com` | `Tech123!` | Diagnóstico técnico, cambio de estados y asignación de repuestos |
 
 > **Nota:** La pantalla de inicio de sesión incluye botones de acceso con un solo clic (*Demo Admin* y *Demo Técnico*).

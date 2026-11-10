@@ -23,5 +23,4 @@ public class ServiceOrder
     public virtual User? Tecnico { get; set; }
     public virtual ICollection<OrderItem> ItemsOrden { get; set; } = new List<OrderItem>();
     public virtual ICollection<OrderHistory> HistorialOrden { get; set; } = new List<OrderHistory>();
-    public virtual ICollection<OrderImage> EvidenciasFotograficas { get; set; } = new List<OrderImage>();
 }

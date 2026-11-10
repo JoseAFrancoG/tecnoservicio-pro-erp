@@ -137,24 +137,6 @@ CREATE TABLE dbo.HistorialOrdenes (
 );
 GO
 
--- 7. Tabla de Evidencias Fotográficas y Registro de Imágenes
-IF OBJECT_ID(N'dbo.EvidenciasFotograficas', N'U') IS NOT NULL DROP TABLE dbo.EvidenciasFotograficas;
-
-CREATE TABLE dbo.EvidenciasFotograficas (
-    Id INT IDENTITY(1,1) NOT NULL,
-    OrdenServicioId INT NOT NULL,
-    Tipo NVARCHAR(50) NOT NULL,
-    Titulo NVARCHAR(150) NOT NULL,
-    Descripcion NVARCHAR(MAX) NULL,
-    UrlImagen NVARCHAR(MAX) NOT NULL,
-    SubidoPorUsuarioId INT NOT NULL,
-    FechaCreacion DATETIME2(7) NOT NULL CONSTRAINT DF_EvidenciasFotograficas_FechaCreacion DEFAULT SYSUTCDATETIME(),
-    CONSTRAINT PK_EvidenciasFotograficas PRIMARY KEY CLUSTERED (Id),
-    CONSTRAINT FK_EvidenciasFotograficas_OrdenesServicio FOREIGN KEY (OrdenServicioId) REFERENCES dbo.OrdenesServicio(Id) ON DELETE CASCADE,
-    CONSTRAINT FK_EvidenciasFotograficas_Usuarios FOREIGN KEY (SubidoPorUsuarioId) REFERENCES dbo.Usuarios(Id) ON DELETE NO ACTION
-);
-GO
-
 -- ============================================================================
 -- ÍNDICES DE RENDIMIENTO EN ESPAÑOL
 -- ============================================================================

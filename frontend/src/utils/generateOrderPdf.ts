@@ -334,35 +334,6 @@ export const generateOrderPdf = (order: ServiceOrderDetail) => {
         </tbody>
       </table>
 
-      ${
-        order.images && order.images.length > 0
-          ? `
-        <div class="section-title">Registro y Evidencias Fotográficas (${order.images.length})</div>
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px;">
-          ${order.images
-            .map(
-              (img) => `
-            <div style="border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden; background: #f8fafc; font-size: 10px;">
-              <div style="height: 120px; overflow: hidden; background: #0f172a; display: flex; align-items: center; justify-content: center;">
-                <img src="${img.imageUrl}" alt="${img.title}" style="max-height: 120px; max-width: 100%; object-fit: cover;" />
-              </div>
-              <div style="padding: 6px 8px;">
-                <span style="display: inline-block; padding: 2px 5px; font-size: 9px; font-weight: bold; border-radius: 4px; background: #e0f2fe; color: #0369a1; text-transform: uppercase;">
-                  ${img.type}
-                </span>
-                <div style="font-weight: 600; color: #1e293b; margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                  ${img.title}
-                </div>
-              </div>
-            </div>
-          `
-            )
-            .join('')}
-        </div>
-      `
-          : ''
-      }
-
       <!-- Resumen de Costos -->
       <div class="totals-container">
         <div class="totals-box">
